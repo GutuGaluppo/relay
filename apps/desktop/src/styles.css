@@ -1,0 +1,415 @@
+:root {
+  --paper: #f6f4ef;
+  --ink: #1e2a38;
+  --muted: #76746d;
+  --line: #e2ded4;
+  --hover: #ece9e1;
+  --focus: #3d6b99;
+  --danger: #8a3b2f;
+  --radius: 10px;
+  color-scheme: light dark;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI Variable", "Segoe UI", system-ui,
+    sans-serif;
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  font-synthesis: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #141a21;
+    --ink: #ece9e2;
+    --muted: #8d9097;
+    --line: #28303a;
+    --hover: #1c232c;
+    --focus: #8fb4d9;
+    --danger: #e0907f;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  background: var(--paper);
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: default;
+}
+
+/* Space for the macOS traffic lights; also a drag handle for the window. */
+.drag {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 36px;
+  z-index: 10;
+}
+
+main {
+  min-height: 100%;
+  padding: 56px 40px 32px;
+  animation: enter 220ms ease-out;
+}
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  main {
+    animation: none;
+  }
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+.eyebrow {
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+}
+
+.reminder-text {
+  font-size: clamp(26px, 4.6vw, 54px);
+  line-height: 1.12;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  max-width: 20ch;
+  text-wrap: balance;
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+/* ------------------------------------------------------------ buttons */
+
+button,
+select,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  border: 1px solid var(--line);
+  background: transparent;
+  border-radius: var(--radius);
+  padding: 11px 20px;
+  min-width: 132px;
+  cursor: pointer;
+  transition:
+    background 120ms ease,
+    border-color 120ms ease;
+}
+
+button:hover:not(:disabled) {
+  background: var(--hover);
+}
+
+button.primary {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+  font-weight: 500;
+}
+
+button.primary:hover:not(:disabled) {
+  background: var(--ink);
+  opacity: 0.9;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+button.link {
+  border: none;
+  padding: 4px 6px;
+  min-width: 0;
+  color: var(--muted);
+}
+
+button.link:hover {
+  background: none;
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+/* ------------------------------------------------------------ reminder */
+
+.prompt,
+.focus {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 28px;
+  min-height: 100vh;
+}
+
+.prompt--overlay .reminder-text {
+  font-size: clamp(34px, 5vw, 64px);
+}
+
+.prompt--compact {
+  gap: 20px;
+  padding: 40px 28px 28px;
+}
+
+.prompt--compact .reminder-text {
+  font-size: 26px;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.actions--split {
+  gap: 16px;
+}
+
+.timer {
+  font-size: clamp(40px, 7vw, 72px);
+  font-weight: 300;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+}
+
+.snooze {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-top: 4px;
+}
+
+.snooze-options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  max-width: 560px;
+}
+
+.snooze-options button {
+  min-width: 96px;
+}
+
+.snooze-custom {
+  display: flex;
+  gap: 10px;
+}
+
+input[type="datetime-local"],
+input[type="email"],
+input:not([type]),
+select {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: transparent;
+  padding: 10px 12px;
+}
+
+/* ------------------------------------------------------------ home */
+
+.home,
+.settings {
+  display: flex;
+  flex-direction: column;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.home-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.home-header h2 {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  margin-left: -10px;
+}
+
+.tabs button {
+  border: none;
+  min-width: 0;
+  padding: 6px 10px;
+  color: var(--muted);
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.tabs button[aria-selected="true"] {
+  color: var(--ink);
+}
+
+.tabs button:hover {
+  background: none;
+  color: var(--ink);
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 0;
+  border-top: 1px solid var(--line);
+}
+
+.list li:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.list-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.list-text span {
+  font-size: 16px;
+  overflow-wrap: anywhere;
+}
+
+.list-text small {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.list-actions {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
+.empty {
+  color: var(--muted);
+  padding: 48px 0;
+  text-align: center;
+}
+
+.status {
+  margin-top: auto;
+  padding-top: 32px;
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* ------------------------------------------------------------ settings */
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 0;
+  border-top: 1px solid var(--line);
+}
+
+.row.account {
+  margin-top: 24px;
+  color: var(--muted);
+}
+
+input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--ink);
+}
+
+.error {
+  color: var(--danger);
+  font-size: 13px;
+}
+
+/* ------------------------------------------------------------ sign in */
+
+.signin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.wordmark {
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.tagline {
+  color: var(--muted);
+  margin-bottom: 28px;
+}
+
+.signin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: min(320px, 100%);
+}
+
+.signin-form input {
+  text-align: center;
+  padding: 12px;
+}
+
+.hint {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.blank {
+  min-height: 100vh;
+}

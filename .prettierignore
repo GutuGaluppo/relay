@@ -1,0 +1,9 @@
+node_modules
+dist
+target
+pnpm-lock.yaml
+apps/desktop/src-tauri/gen
+apps/mobile/ios
+apps/mobile/android
+.expo
+docs

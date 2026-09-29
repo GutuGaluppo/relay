@@ -1,0 +1,37 @@
+{
+  "expo": {
+    "name": "Relay",
+    "slug": "relay-mobile",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "app.relay.mobile"
+    },
+    "android": {
+      "package": "app.relay.mobile",
+      "adaptiveIcon": {
+        "backgroundColor": "#1E2A38",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-sqlite",
+      [
+        "expo-speech-recognition",
+        {
+          "microphonePermission": "O Relay usa o microfone para transcrever o que voc\u00ea quer lembrar. O \u00e1udio n\u00e3o \u00e9 guardado.",
+          "speechRecognitionPermission": "O Relay transcreve sua fala em texto para voc\u00ea revisar antes de enviar."
+        }
+      ]
+    ],
+    "scheme": "relay"
+  }
+}
